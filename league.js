@@ -21,11 +21,14 @@ const teams = [
   {
     name: "7",
   },
+  {
+    name: "8",
+  },
 ];
 
 class LeagueSort {
   constructor(teams) {
-    this.teams = this.addRestTeam(teams);
+    this.teams = this.addRestTeam(this.sortTeams(teams));
   }
 
   sortTeams(arr) {
@@ -44,7 +47,6 @@ class LeagueSort {
   }
 
   getLeague() {
-    console.log(this.teams);
     const numJourneys = this.teams.length - 1;
     const numMatchsPerJourney = this.teams.length / 2;
     const isOdd = this.teams.find((el) => el.rest);
@@ -57,6 +59,8 @@ class LeagueSort {
         rounds[i].push({
           local: this.teams[k].name,
         });
+
+        // First column
         if (j === 0 && !isOdd) {
           if (i % 2 === 0) {
             Object.assign(rounds[i][0], {
@@ -75,6 +79,7 @@ class LeagueSort {
           }
         }
 
+        // Second element of each row
         if (j > 0) {
           Object.assign(rounds[i][j], {
             visit: reverseTeams[aux].name,
@@ -93,8 +98,25 @@ class LeagueSort {
 
     return rounds;
   }
+
+  getTwoRoundsLeague() {
+    const firstRoundLeague = this.getLeague();
+
+    console.table(firstRoundLeague);
+
+    const arrayToInvertTeams = [...firstRoundLeague];
+
+    const twoRoundsLeague = arrayToInvertTeams.map((row) => {
+      return row.map((match) => {
+        let aux = match.local;
+        match.local = match.visit;
+        match.visit = aux;
+        return match;
+      });
+    });
+    console.table(twoRoundsLeague);
+  }
 }
 
 const league = new LeagueSort(teams);
-
-console.table(league.getLeaguePair());
+league.getTwoRoundsLeague();
