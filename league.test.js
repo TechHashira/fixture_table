@@ -36,7 +36,6 @@ describe("getTwoRoundsLeague", () => {
     const [firstRoundLeague, secondRoundLeague] = league.getTwoRoundsLeague();
     const firstMatch_FirstRoundLeague = firstRoundLeague[1][1];
     const firstMatch_SecondRoundLeague = secondRoundLeague[1][1];
-    console.log(firstMatch_FirstRoundLeague, firstMatch_SecondRoundLeague);
     expect(firstMatch_FirstRoundLeague.local).toBe(
       firstMatch_SecondRoundLeague.visit
     );
