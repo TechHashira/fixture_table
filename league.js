@@ -1,32 +1,4 @@
-const teams = [
-  {
-    name: "1",
-  },
-  {
-    name: "2",
-  },
-  {
-    name: "3",
-  },
-  {
-    name: "4",
-  },
-  {
-    name: "5",
-  },
-
-  {
-    name: "6",
-  },
-  {
-    name: "7",
-  },
-  {
-    name: "8",
-  },
-];
-
-class LeagueSort {
+export class LeagueSort {
   constructor(teams) {
     this.teams = this.addRestTeam(this.sortTeams(teams));
   }
@@ -100,23 +72,23 @@ class LeagueSort {
   }
 
   getTwoRoundsLeague() {
-    const firstRoundLeague = this.getLeague();
+    const array = this.getLeague();
 
-    console.table(firstRoundLeague);
+    const aux = array.map((row) =>
+      row.slice().map((match) => Object.assign({}, match))
+    );
 
-    const arrayToInvertTeams = [...firstRoundLeague];
-
-    const twoRoundsLeague = arrayToInvertTeams.map((row) => {
+    const twoRoundsLeague = array.map((row) => {
       return row.map((match) => {
-        let aux = match.local;
-        match.local = match.visit;
-        match.visit = aux;
+        if (!match.rest) {
+          const aux = match.local;
+          match.local = match.visit;
+          match.visit = aux;
+        }
         return match;
       });
     });
-    console.table(twoRoundsLeague);
+
+    return [aux, twoRoundsLeague];
   }
 }
-
-const league = new LeagueSort(teams);
-league.getTwoRoundsLeague();

@@ -1,0 +1,35 @@
+{
+  "type": "module",
+  "name": "todoscontratodos",
+  "version": "1.0.0",
+  "description": "",
+  "main": "league.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TechHashira/fixture_table.git"
+  },
+  "keywords": [
+    "todoscontratodos",
+    "torneo",
+    "segunda vuelta"
+  ],
+  "author": "tech.hashira@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TechHashira/fixture_table/issues"
+  },
+  "homepage": "https://github.com/TechHashira/fixture_table#readme",
+  "devDependencies": {
+    "@babel/preset-env": "^7.14.2",
+    "@types/jest": "^26.0.23",
+    "jest": "^27.0.1"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.jsx?$": "babel-jest"
+    }
+  }
+}
